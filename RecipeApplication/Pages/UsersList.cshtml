@@ -1,13 +1,14 @@
 ﻿@page
 @model RecipeApplication.Pages.UsersListModel
 @{
+    ViewData["Title"] = "User List";
 }
 
-@foreach (var item in Model.model)
+@foreach (var user in Model.UserRoles)
 {
-    <div>User: @item.UserName</div>
-    <div>Email: @item.Email</div>
-    <form asp-page-handler="DeleteUser" method="post" asp-route-stud_id="@item.UserName" onsubmit="return confirm('Delete?');">
+    <div>User: @user.UserName</div>
+    <div>Email: @user.Email</div>
+    <form asp-page-handler="DeleteUser" method="post" asp-route-stud_id="@user.UserName" onsubmit="return confirm('Delete?');">
         <button type="submit" class="btn btn-primary">Delete</button>
     </form>
     <br />

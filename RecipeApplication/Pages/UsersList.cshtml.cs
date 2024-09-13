@@ -14,14 +14,14 @@ namespace RecipeApplication.Pages
     public class UsersListModel : PageModel
     {
 
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<IdentityUser> UserManager;
 
-        public UsersListModel(UserManager<IdentityUser> userManager)
+        public UsersListModel(UserManager<IdentityUser> user_manager)
         {
-            this.userManager = userManager;
+            this.UserManager = user_manager;
         }
         [BindProperty]
-        public IList<UserRolesViewModel> model { get; set; } = new List<UserRolesViewModel>();
+        public IList<UserRolesViewModel> UserRoles { get; set; } = new List<UserRolesViewModel>();
 
         public class UserRolesViewModel
         {
@@ -31,7 +31,7 @@ namespace RecipeApplication.Pages
 
         public IActionResult OnGet()
         {
-            List<IdentityUser> users = userManager.Users.ToList();
+            List<IdentityUser> users = UserManager.Users.ToList();
 
             foreach (IdentityUser user in users)
             {
@@ -41,7 +41,7 @@ namespace RecipeApplication.Pages
                     Email = user.Email,
                 };
 
-                model.Add(urv);
+                UserRoles.Add(urv);
             }
             return Page();
         }
@@ -58,6 +58,5 @@ namespace RecipeApplication.Pages
             }
             return Page();
         }
-
     }
 }
